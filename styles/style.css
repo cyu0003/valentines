@@ -33,6 +33,7 @@ body {
     background: #ff6699;
     color: white;
     position: relative;
+    filter: grayscale(100%);
 }
 
 #result {
