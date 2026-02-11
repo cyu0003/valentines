@@ -18,7 +18,7 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.3s ease;
 }
 
 .yes {
@@ -36,4 +36,57 @@ body {
     margin-top: 40px;
     font-size: 24px;
     font-weight: bold;
+}
+
+/* Background fade */
+body.romantic {
+    background: linear-gradient(to top, #ffd6e8, #fff0f5);
+    transition: background 1.5s ease;
+}
+
+/* Result styling */
+#result {
+    margin-top: 40px;
+    font-size: 28px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+#result.show {
+    opacity: 1;
+}
+
+/* Soft glow animation */
+.glow {
+    animation: glowPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+    from {
+        text-shadow: 0 0 5px #ff99cc;
+    }
+    to {
+        text-shadow: 0 0 20px #ff4da6;
+    }
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    font-size: 22px;
+    animation: floatUp 3s ease-out forwards;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-500px) scale(1.6);
+        opacity: 0;
+    }
 }
