@@ -24,6 +24,9 @@ body {
 .yes {
     background: #ff4da6;
     color: white;
+
+    /* Make the button grow downward from the top */
+    transform-origin: top center;
 }
 
 .no {

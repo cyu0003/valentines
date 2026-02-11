@@ -1,6 +1,7 @@
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const result = document.getElementById("result");
+const message = document.getElementById("message");
 
 let yesScale = 1;
 let noScale = 1;
@@ -9,6 +10,22 @@ const yesGrowth = 0.15;
 const noShrink = 0.10;
 
 const loveSong = document.getElementById("loveSong");
+
+const escalationMessages = [
+    "Please just click YES 💖",
+    "Are you sure you don't want to be my Valentine? 😢",
+    "Try clicking the super large button, you can't miss it! 😏",
+    "I promise it will make me the happiest person alive 💘",
+    "The hearts are watching you… 💌",
+    "Just one little click… for love 🌸",
+    "Don't make me beg… 😇",
+    "Your destiny is to say YES! ✨",
+    "Think of all the fun we could have together 💕",
+    "This button is magically irresistible… 💞",
+    "I'll buy you a burger if you click YES 🍔"
+];
+
+let escalationIndex = 0;
 
 function softHeartBurst() {
     for (let i = 0; i < 10; i++) {
@@ -39,9 +56,14 @@ noBtn.addEventListener("mouseover", () => {
     noBtn.style.top = y + "px";
 
     // Grow YES button
-    yesScale += yesGrowth;
-    yesScale = Math.min(yesScale, 3);
-    yesBtn.style.transform = `scale(${yesScale})`;
+    if (yesScale < 3) {
+        yesScale += yesGrowth;
+        yesScale = Math.min(yesScale, 3);
+        yesBtn.style.transform = `scale(${yesScale})`;
+    } else {
+        message.textContent = escalationMessages[escalationIndex];
+        escalationIndex = (escalationIndex + 1) % escalationMessages.length;
+    }
 
     // Shrink NO button
     noScale -= noShrink;
@@ -70,8 +92,10 @@ yesBtn.addEventListener("click", () => {
     yesScale = 1;
     noScale = 1;
     yesBtn.style.transform = "scale(1)";
+    yesBtn.style.display = "none";
     noBtn.style.transform = "scale(1)";
     noBtn.style.display = "none";
+    message.style.display = "none";
 
     // 💌 Show result
     result.textContent = "You just made me the happiest person alive 💘";
